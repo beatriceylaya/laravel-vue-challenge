@@ -145,10 +145,12 @@ class CoffeeMachine
     {
         $available = [];
         foreach (self::COFFEE_RECIPES as $type => $recipe) {
-            $available[$type] = (
+            $canMake = (
                 $this->waterContainer->get() >= $recipe['water'] &&
                 $this->coffeeContainer->get() >= $recipe['coffee']
             );
+
+            $available[$type] = $canMake;
         }
         return $available;
     }
