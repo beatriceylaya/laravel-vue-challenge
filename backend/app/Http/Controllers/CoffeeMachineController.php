@@ -18,9 +18,7 @@ class CoffeeMachineController extends Controller
     public function status(): JsonResponse
     {
         try {
-            return response()->json([
-                'data' => $this->machine->getStatus()
-            ]);
+            return response()->json($this->machine->getStatus());
         } catch (Throwable $e) {
             return $this->errorResponse($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -31,9 +29,7 @@ class CoffeeMachineController extends Controller
         try {
             $type = $request->validated()['type'];
             $coffee = $this->machine->makeCoffee($type);
-            return response()->json([
-                'data' => $coffee
-            ]);
+            return response()->json($coffee);
         } catch (Throwable $e) {
             return $this->errorResponse($e->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
@@ -45,10 +41,7 @@ class CoffeeMachineController extends Controller
             $amount = (float) $request->input('amount');
 
             $result = $this->machine->fillWater($amount);
-            return response()->json([
-                'message' => $result['message'],
-                'data' => $result,
-            ]);
+            return response()->json($result);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return $this->errorResponse('Invalid amount. Please enter a value between 1 and 2000 ml.', Response::HTTP_UNPROCESSABLE_ENTITY);
         } catch (Throwable $e) {
@@ -62,10 +55,7 @@ class CoffeeMachineController extends Controller
             $amount = (float) $request->input('amount');
 
             $result = $this->machine->fillCoffee($amount);
-            return response()->json([
-                'message' => $result['message'],
-                'data' => $result,
-            ]);
+            return response()->json($result);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return $this->errorResponse('Invalid amount. Please enter a value between 1 and 500 g.', Response::HTTP_UNPROCESSABLE_ENTITY);
         } catch (Throwable $e) {
