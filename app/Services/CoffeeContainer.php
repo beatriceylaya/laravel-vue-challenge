@@ -20,6 +20,11 @@ class CoffeeContainer implements Container
         if ($quantity <= 0) {
             throw new RuntimeException("Coffee quantity must be greater than 0.");
         }
+
+        if ($this->current + $quantity > $this->capacity) {
+            throw new RuntimeException("Coffee container overflow!");
+        }
+        $this->current += $quantity;
     }
 
     public function use(float $quantity): float

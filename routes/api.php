@@ -12,4 +12,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/machine')->group(function () {
     Route::get('/status', [CoffeeMachineController::class, 'status']);
     Route::post('/brew', [CoffeeMachineController::class, 'brew']);
+    Route::post('/fill-water', [CoffeeMachineController::class, 'fillWater']);
+    Route::post('/fill-coffee', [CoffeeMachineController::class, 'fillCoffee']);
 });
