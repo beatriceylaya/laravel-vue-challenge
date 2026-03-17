@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoffeeMachineController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -8,3 +9,7 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 
 
+Route::prefix('/machine')->group(function () {
+    Route::get('/status', [CoffeeMachineController::class, 'status']);
+    Route::post('/brew', [CoffeeMachineController::class, 'brew']);
+});
