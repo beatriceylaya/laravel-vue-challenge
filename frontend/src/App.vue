@@ -172,7 +172,8 @@ onMounted(() => {
         />
         <button
           @click="fillWater(waterAmount)"
-          class="ml-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+          :disabled="isBusy"
+          class="ml-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Fill Water
         </button>
@@ -188,7 +189,8 @@ onMounted(() => {
         />
         <button
           @click="fillCoffee(coffeeAmount)"
-          class="ml-2 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+          :disabled="isBusy"
+          class="ml-2 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Fill Coffee
         </button>

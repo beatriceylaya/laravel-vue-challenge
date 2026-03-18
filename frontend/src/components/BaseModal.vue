@@ -97,14 +97,14 @@ watch(
           </div>
 
           <div class="px-5 py-4">
-            <div class="flex items-start gap-3">
+            <div class="flex items-center gap-3">
               <div
-                class="mt-0.5 inline-flex h-9 w-9 flex-none items-center justify-center rounded-full"
+                class="inline-flex h-9 w-9 flex-none items-center justify-center rounded-full"
                 :class="variant === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'"
               >
                 <span class="text-base font-bold">{{ variant === 'success' ? '✓' : '!' }}</span>
               </div>
-              <div class="min-w-0 text-sm text-gray-700">
+              <div class="min-w-0 text-sm leading-5 text-gray-700">
                 <slot />
               </div>
             </div>
