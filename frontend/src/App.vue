@@ -13,6 +13,12 @@ type MachineStatus = {
   can_make?: string[] | Record<string, boolean>
 }
 
+type ApiResponse<TData, TMeta = unknown> = {
+  message: string
+  data: TData
+  meta?: TMeta
+}
+
 // Modal message
 const modal = ref<{ visible: boolean; message: string; type: 'success' | 'error' }>({
   visible: false,
@@ -70,11 +76,10 @@ const canMakeRecipes = (): string[] => {
 const brew = async (type: string) => {
   isBusy.value = true
   try {
-    const { data } = await axios.post(`${API_URL}/machine/brew`, { type })
-    status.value = data.status ?? status.value
-    showModal(data.message, 'success')
+    const { data } = await axios.post<ApiResponse<MachineStatus>>(`${API_URL}/machine/brew`, { type })
+    status.value = data.data ?? status.value
+    showModal(data.message || 'Coffee is ready!', 'success')
   } catch (err: any) {
-    console.log(err)
     showModal(err.response?.data?.message || 'Something went wrong while brewing coffee.', 'error')
   } finally {
     isBusy.value = false
@@ -84,9 +89,9 @@ const brew = async (type: string) => {
 const getStatus = async () => {
   isBusy.value = true
   try {
-    const { data } = await axios.get(`${API_URL}/machine/status`)
-    status.value = data
-  } catch (err:any) {
+    const { data } = await axios.get<ApiResponse<MachineStatus>>(`${API_URL}/machine/status`)
+    status.value = data.data
+  } catch (err: any) {
     showModal(err.response?.data?.message || 'Something went wrong while getting status of machine', 'error')
   } finally {
     isBusy.value = false
@@ -96,8 +101,8 @@ const getStatus = async () => {
 const fillCoffee = async (amount: number) => {
   isBusy.value = true
   try {
-    const { data } = await axios.post(`${API_URL}/machine/fill-coffee`, { amount })
-    status.value = data.status ?? status.value
+    const { data } = await axios.post<ApiResponse<MachineStatus>>(`${API_URL}/machine/fill-coffee`, { amount })
+    status.value = data.data ?? status.value
     showModal(data.message || `Filled coffee with ${amount}g`, 'success')
   } catch (err: any) {
     showModal(err.response?.data?.message || 'Something went wrong while refilling coffee container', 'error')
@@ -109,8 +114,8 @@ const fillCoffee = async (amount: number) => {
 const fillWater = async (amount: number) => {
   isBusy.value = true
   try {
-    const { data } = await axios.post(`${API_URL}/machine/fill-water`, { amount })
-    status.value = data.status ?? status.value
+    const { data } = await axios.post<ApiResponse<MachineStatus>>(`${API_URL}/machine/fill-water`, { amount })
+    status.value = data.data ?? status.value
     showModal(data.message || `Filled water with ${amount}ml`, 'success')
   } catch (err: any) {
     showModal(err.response?.data?.message || 'Something went wrong while refilling water container', 'error')
