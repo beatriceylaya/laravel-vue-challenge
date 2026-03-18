@@ -31,7 +31,7 @@ class MakeCoffeeRequest extends FormRequest
     {
         return [
             'type.required' => 'Please select what type of coffee you want.',
-            'type:in' => 'This coffee is unavailable. Choose espresso, double espresso or americano.'
+            'type.in' => 'This coffee is unavailable. Choose espresso, double espresso or americano.'
         ];
     }
 }

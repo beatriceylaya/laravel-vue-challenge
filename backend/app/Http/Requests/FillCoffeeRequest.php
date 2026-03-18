@@ -32,8 +32,8 @@ class FillCoffeeRequest extends FormRequest
         return [
             'amount.required' => 'Amount is required.',
             'amount.numeric' => 'Amount must be numeric.',
-            'amount.min' => 'Amount must be at least :min.',
-            'amount.max' => 'Amount exceeds allowed maximum.',
+            'amount.min' => 'Amount must be at least :min g.',
+            'amount.max' => 'Coffee container will overflow if you add that much. Please enter a smaller amount (max :max g).',
         ];
     }
 }
