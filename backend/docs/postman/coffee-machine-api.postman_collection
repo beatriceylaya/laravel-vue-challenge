@@ -30,7 +30,7 @@
             "status"
           ]
         },
-        "description": "Returns the current state of the coffee machine, including water and coffee fill levels and which drinks can currently be made.\n\n### Method & path\n\n`GET /api/machine/status`\n\n**Full URL (with base variable):** `{{url}}/api/machine/status`\n\n### Required variables\n\n- `{{url}}` — Base URL for the Coffee Machine API (for example `http://localhost`). Set this in your active environment (currently **Local**) or in collection variables.\n    \n\n### Headers\n\n- `Accept: application/json`\n    \n\n### Response (200 OK)\n\nReturns JSON with a top-level `data` object:\n\n- `data.water`\n    \n    - `current_ml` _(number)_ — Current water amount in milliliters.\n        \n    - `capacity_ml` _(number)_ — Maximum water capacity in milliliters.\n        \n    - `percentage` _(number)_ — Fill level percentage (0–100).\n        \n- `data.coffee`\n    \n    - `current_g` _(number)_ — Current coffee amount in grams.\n        \n    - `capacity_g` _(number)_ — Maximum coffee capacity in grams.\n        \n    - `percentage` _(number)_ — Fill level percentage (0–100).\n        \n- `data.can_make`\n    \n    - `espresso` _(boolean)_\n        \n    - `double_espresso` _(boolean)_\n        \n    - `ristretto` _(boolean)_\n        \n    - `americano` _(boolean)_\n        \n\n### Example response (snippet)\n\n``` json\n{\n  \"data\": {\n    \"water\": {\n      \"current_ml\": 2000,\n      \"capacity_ml\": 2000,\n      \"percentage\": 100\n    },\n    \"coffee\": {\n      \"current_g\": 492,\n      \"capacity_g\": 500,\n      \"percentage\": 98.4\n    },\n    \"can_make\": {\n      \"espresso\": true,\n      \"double_espresso\": true,\n      \"ristretto\": true,\n      \"americano\": true\n    }\n  }\n}\n\n ```"
+        "description": "Returns the current state of the coffee machine, including water and coffee fill levels and which drinks can currently be made.\n\n### Method & path\n\n`GET /api/machine/status`\n\n**Full URL (with base variable):** `{{url}}/api/machine/status`\n\n### Required variables\n\n- `{{url}}` — Base URL for the Coffee Machine API (for example `http://localhost`). Set this in your active environment (currently **Local**) or in collection variables.\n    \n\n### Headers\n\n- `Accept: application/json`\n    \n\n### Response (200 OK)\n\nReturns JSON with a top-level `data` object:\n\n- `data.water`\n    \n    - `current_ml` _(number)_ — Current water amount in milliliters.\n        \n    - `capacity_ml` _(number)_ — Maximum water capacity in milliliters.\n        \n    - `percentage` _(number)_ — Fill level percentage (0–100).\n        \n- `data.coffee`\n    \n    - `current_g` _(number)_ — Current coffee amount in grams.\n        \n    - `capacity_g` _(number)_ — Maximum coffee capacity in grams.\n        \n    - `percentage` _(number)_ — Fill level percentage (0–100).\n        \n- `data.can_make`\n    \n    - `espresso` _(boolean)_\n        \n    - `double_espresso` _(boolean)_\n        \n    - `ristretto` _(boolean)_\n        \n    - `americano` _(boolean)_\n        \n\n### Example response (snippet)\n\n``` json\n{\n  \"message\": \"string\",\n  \"data\": {\n    \"water\": {\n      \"current_ml\": 2000,\n      \"capacity_ml\": 2000,\n      \"percentage\": 100\n    },\n    \"coffee\": {\n      \"current_g\": 492,\n      \"capacity_g\": 500,\n      \"percentage\": 98.4\n    },\n    \"can_make\": {\n      \"espresso\": true,\n      \"double_espresso\": true,\n      \"ristretto\": true,\n      \"americano\": true\n    }\n  }\n}\n\n ```"
       },
       "response": [
         {
@@ -78,7 +78,7 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 17 Mar 2026 09:41:14 GMT"
+              "value": "Wed, 18 Mar 2026 03:31:00 GMT"
             },
             {
               "key": "Content-Type",
@@ -92,7 +92,7 @@
             }
           ],
           "cookie": [],
-          "body": "{\n    \"data\": {\n        \"water\": {\n            \"current_ml\": 2000,\n            \"capacity_ml\": 2000,\n            \"percentage\": 100\n        },\n        \"coffee\": {\n            \"current_g\": 492,\n            \"capacity_g\": 500,\n            \"percentage\": 98.4\n        },\n        \"can_make\": {\n            \"espresso\": true,\n            \"double_espresso\": true,\n            \"ristretto\": true,\n            \"americano\": true\n        }\n    }\n}"
+          "body": "{\n    \"message\": \"Success!\",\n    \"data\": {\n        \"water\": {\n            \"current_ml\": 1226,\n            \"capacity_ml\": 2000,\n            \"percentage\": 61.3\n        },\n        \"coffee\": {\n            \"current_g\": 372,\n            \"capacity_g\": 500,\n            \"percentage\": 74.4\n        },\n        \"can_make\": {\n            \"espresso\": true,\n            \"double_espresso\": true,\n            \"ristretto\": true,\n            \"americano\": true\n        }\n    }\n}"
         }
       ]
     },
@@ -132,7 +132,7 @@
             "brew"
           ]
         },
-        "description": "### Brew Coffee\n\nBrew a coffee drink on the machine.\n\n**Method / URL**  \n`POST {{url}}/api/machine/brew`\n\n---\n\n### Variables\n\n- `{{url}}` _(required)_: Base URL for the Coffee Machine API (set in the active environment, e.g. **Local**).\n    \n\n---\n\n### Headers\n\nThis request is sent as JSON:\n\n- `Accept: application/json`\n    \n- `Content-Type: application/json`\n    \n\n---\n\n### Request body\n\n**Content-Type:** `application/json`\n\nSchema:\n\n``` json\n{\n  \"type\": \"string\"\n}\n\n ```\n\n- `type` _(required)_: The drink to brew.\n    \n\nAllowed values depend on the API/machine configuration. Common values include:\n\n- `espresso`\n    \n- `double_espresso`\n    \n- `americano`\n    \n\nExample:\n\n``` json\n{\n  \"type\": \"americano\"\n}\n\n ```\n\n---\n\n### Responses\n\nSaved examples are attached to this request:\n\n#### 200 — Successful Response\n\nReturns a confirmation message plus ingredient usage and the updated machine status.\n\nTypical response shape:\n\n``` json\n{\n  \"data\": {\n    \"message\": \"string\",\n    \"used\": {\n      \"water\": 0,\n      \"coffee\": 0\n    },\n    \"status\": {\n      \"water\": {\n        \"current_ml\": 0,\n        \"capacity_ml\": 0,\n        \"percentage\": 0\n      },\n      \"coffee\": {\n        \"current_g\": 0,\n        \"capacity_g\": 0,\n        \"percentage\": 0\n      },\n      \"can_make\": {\n        \"espresso\": true,\n        \"double_espresso\": true,\n        \"ristretto\": true,\n        \"americano\": true\n      }\n    }\n  }\n}\n\n ```\n\n#### 4xx — Validation Error\n\nReturned when the request payload is invalid (for example, missing/unsupported `type`). See the saved **Validation Error** example for the exact response used by this API."
+        "description": "### Brew Coffee\n\nBrew a coffee drink on the machine.\n\n**Method / URL**  \n`POST {{url}}/api/machine/brew`\n\n---\n\n### Variables\n\n- `{{url}}` _(required)_: Base URL for the Coffee Machine API (set in the active environment, e.g. **Local**).\n    \n\n---\n\n### Headers\n\nThis request is sent as JSON:\n\n- `Accept: application/json`\n    \n- `Content-Type: application/json`\n    \n\n---\n\n### Request body\n\n**Content-Type:** `application/json`\n\nSchema:\n\n``` json\n{\n  \"type\": \"string\"\n}\n\n ```\n\n- `type` _(required)_: The drink to brew.\n    \n\nAllowed values depend on the API/machine configuration. Common values include:\n\n- `espresso`\n    \n- `double_espresso`\n    \n- `americano`\n    \n\nExample:\n\n``` json\n{\n  \"type\": \"americano\"\n}\n\n ```\n\n---\n\n### Responses\n\nSaved examples are attached to this request:\n\n#### 200 — Successful Response\n\nReturns a confirmation message plus ingredient usage and the updated machine status.\n\nTypical response shape:\n\n``` json\n{\n    \"message\": \"string\",\n    \"data\": {\n        \"water\": {\n            \"current_ml\": 0,\n            \"capacity_ml\": 0,\n            \"percentage\": 0\n        },\n        \"coffee\": {\n            \"current_g\": 0,\n            \"capacity_g\": 0,\n            \"percentage\": 0\n        },\n        \"can_make\": {\n            \"espresso\": true,\n            \"double_espresso\": true,\n            \"ristretto\": true,\n            \"americano\": true\n        }\n    },\n    \"meta\": {\n        \"used\": {\n            \"water\": 0,\n            \"coffee\": 0\n        }\n    }\n}\n\n ```\n\n#### 4xx — Validation Error\n\nReturned when the request payload is invalid (for example, missing/unsupported `type`). See the saved **Validation Error** example for the exact response used by this API."
       },
       "response": [
         {
@@ -153,7 +153,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"type\": \"espresso\"\r\n}",
+              "raw": "{\r\n    \"type\": \"americano\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -174,7 +174,7 @@
           },
           "status": "OK",
           "code": 200,
-          "_postman_previewlanguage": "json",
+          "_postman_previewlanguage": null,
           "header": [
             {
               "key": "Host",
@@ -194,13 +194,11 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 17 Mar 2026 09:03:31 GMT"
+              "value": "Wed, 18 Mar 2026 03:36:16 GMT"
             },
             {
               "key": "Content-Type",
-              "value": "application/json",
-              "description": "",
-              "type": "text"
+              "value": "application/json"
             },
             {
               "key": "Access-Control-Allow-Origin",
@@ -208,82 +206,7 @@
             }
           ],
           "cookie": [],
-          "body": "{\n    \"data\": {\n        \"message\": \"Your Espresso is ready!\",\n        \"used\": {\n            \"water\": 24,\n            \"coffee\": 8\n        },\n        \"status\": {\n            \"water\": {\n                \"current_ml\": 1976,\n                \"capacity_ml\": 2000,\n                \"percentage\": 98.8\n            },\n            \"coffee\": {\n                \"current_g\": 492,\n                \"capacity_g\": 500,\n                \"percentage\": 98.4\n            },\n            \"can_make\": {\n                \"espresso\": true,\n                \"double_espresso\": true,\n                \"ristretto\": true,\n                \"americano\": true\n            }\n        }\n    }\n}"
-        },
-        {
-          "name": "Validation Error",
-          "originalRequest": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "type": "text"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"type\": \"ristreto\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{url}}/api/machine/brew",
-              "host": [
-                "{{url}}"
-              ],
-              "path": [
-                "api",
-                "machine",
-                "brew"
-              ]
-            }
-          },
-          "status": "Unprocessable Content",
-          "code": 422,
-          "_postman_previewlanguage": "json",
-          "header": [
-            {
-              "key": "Host",
-              "value": "localhost"
-            },
-            {
-              "key": "Connection",
-              "value": "close"
-            },
-            {
-              "key": "X-Powered-By",
-              "value": "PHP/8.5.3"
-            },
-            {
-              "key": "Cache-Control",
-              "value": "no-cache, private"
-            },
-            {
-              "key": "Date",
-              "value": "Tue, 17 Mar 2026 09:43:01 GMT"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json",
-              "description": "",
-              "type": "text"
-            },
-            {
-              "key": "Access-Control-Allow-Origin",
-              "value": "*"
-            }
-          ],
-          "cookie": [],
-          "body": "{\n    \"message\": \"The selected type is invalid.\",\n    \"errors\": {\n        \"type\": [\n            \"The selected type is invalid.\"\n        ]\n    }\n}"
+          "body": "{\n    \"message\": \"Your Americano is ready!\",\n    \"data\": {\n        \"water\": {\n            \"current_ml\": 1030,\n            \"capacity_ml\": 2000,\n            \"percentage\": 51.5\n        },\n        \"coffee\": {\n            \"current_g\": 340,\n            \"capacity_g\": 500,\n            \"percentage\": 68\n        },\n        \"can_make\": {\n            \"espresso\": true,\n            \"double_espresso\": true,\n            \"ristretto\": true,\n            \"americano\": true\n        }\n    },\n    \"meta\": {\n        \"used\": {\n            \"water\": 148,\n            \"coffee\": 16\n        }\n    }\n}"
         }
       ]
     },
@@ -305,7 +228,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"amount\": 10\r\n}",
+          "raw": "{\r\n    \"amount\": 5\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -323,84 +246,9 @@
             "fill-water"
           ]
         },
-        "description": "Fills (adds) water into the coffee machine’s water container.\n\n**Endpoint**\n\n- **Method:** `POST`\n    \n- **URL:** `{{url}}/api/machine/fill-water`\n    \n\n---\n\n### Required variables\n\n- `{{url}}` — Base URL for the Coffee Machine API (set in the active environment, e.g. **Local**).\n    \n\n---\n\n### Headers\n\nThis request uses JSON:\n\n- `Accept: application/json`\n    \n- `Content-Type: application/json`\n    \n\n---\n\n### Request body\n\n**Content-Type:** `application/json`\n\n**JSON schema (conceptual)**\n\n``` json\n{\n  \"amount\": \"integer\"\n}\n\n ```\n\n**Field details**\n\n- `amount` _(integer, required)_: Amount of water to add, in milliliters (ml).\n    \n\n**Example**\n\n``` json\n{\n  \"amount\": 10\n}\n\n ```\n\n---\n\n### Validation rules / constraints\n\n- `amount` must be an **integer**.\n    \n- `amount` must be **\\> 0**.\n    \n- `amount` must be **within the remaining water capacity** of the machine (i.e., it cannot overfill the water container).\n    \n\nIf validation fails, the API is expected to return a **validation error** response (see “Error cases”).\n\n---\n\n### Successful response (200)\n\nBased on the current saved/observed **200** response, the response is JSON with a human-readable `message` and a `data` object that contains an updated status snapshot.\n\n**Response shape (example)**\n\n``` json\n{\n  \"message\": \"Added 10 ml of water. ...\",\n  \"data\": {\n    \"message\": \"Added 10 ml of water. ...\",\n    \"status\": {\n      \"water\": {\n        \"current_ml\": 1862,\n        \"capacity_ml\": 2000,\n        \"percentage\": 93.1\n      },\n      \"coffee\": {\n        \"current_g\": 481,\n        \"capacity_g\": 500,\n        \"percentage\": 96.2\n      },\n      \"can_make\": {\n        \"espresso\": true,\n        \"double_espresso\": true,\n        \"ristretto\": true,\n        \"americano\": true\n      }\n    }\n  }\n}\n\n ```\n\n**Notes**\n\n- `data.status.water` reflects the new water level after the fill.\n    \n- `data.status.can_make` indicates which drink types are currently possible given ingredient levels.\n    \n\n---\n\n### Error cases\n\n- **Validation Error**: Returned when `amount` is missing, not an integer, not greater than 0, or would exceed remaining water capacity (overfill).\n    \n\n(See the saved example **“Validation Error”** for an example payload/behavior.)"
+        "description": "Fills (adds) water into the coffee machine’s water container.\n\n**Endpoint**\n\n- **Method:** `POST`\n    \n- **URL:** `{{url}}/api/machine/fill-water`\n    \n\n---\n\n### Required variables\n\n- `{{url}}` — Base URL for the Coffee Machine API (set in the active environment, e.g. **Local**).\n    \n\n---\n\n### Headers\n\nThis request uses JSON:\n\n- `Accept: application/json`\n    \n- `Content-Type: application/json`\n    \n\n---\n\n### Request body\n\n**Content-Type:** `application/json`\n\n**JSON schema (conceptual)**\n\n``` json\n{\n  \"amount\": \"integer\"\n}\n\n ```\n\n**Field details**\n\n- `amount` _(integer, required)_: Amount of water to add, in milliliters (ml).\n    \n\n**Example**\n\n``` json\n{\n  \"amount\": 10\n}\n\n ```\n\n---\n\n### Validation rules / constraints\n\n- `amount` must be an **integer**.\n    \n- `amount` must be **\\> 0**.\n    \n- `amount` must be **within the remaining water capacity** of the machine (i.e., it cannot overfill the water container).\n    \n\nIf validation fails, the API is expected to return a **validation error** response (see “Error cases”).\n\n---\n\n### Successful response (200)\n\nBased on the current saved/observed **200** response, the response is JSON with a human-readable `message` and a `data` object that contains an updated status snapshot.\n\n**Response shape (example)**\n\n``` json\n{\n    \"message\": \"Added 10 ml of water. ...\",\n    \"data\": {\n        \"water\": {\n            \"current_ml\": 0,\n            \"capacity_ml\": 0,\n            \"percentage\": 0\n        },\n        \"coffee\": {\n            \"current_g\": 0,\n            \"capacity_g\": 0,\n            \"percentage\": 0\n        },\n        \"can_make\": {\n            \"espresso\": true,\n            \"double_espresso\": true,\n            \"ristretto\": true,\n            \"americano\": true\n        }\n    }\n}\n\n ```\n\n**Notes**\n\n- `data.water` reflects the new water level after the fill.\n    \n- `data.can_make` indicates which drink types are currently possible given ingredient levels.\n    \n\n---\n\n### Error cases\n\n- **Validation Error**: Returned when `amount` is missing, not an integer, not greater than 0, or would exceed remaining water capacity (overfill).\n    \n\n(See the saved example **“Validation Error”** for an example payload/behavior.)"
       },
       "response": [
-        {
-          "name": "Validation Error",
-          "originalRequest": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "type": "text"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"amount\": 24\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{url}}/api/machine/fill-water",
-              "host": [
-                "{{url}}"
-              ],
-              "path": [
-                "api",
-                "machine",
-                "fill-water"
-              ]
-            }
-          },
-          "status": "Unprocessable Content",
-          "code": 422,
-          "_postman_previewlanguage": "json",
-          "header": [
-            {
-              "key": "Host",
-              "value": "localhost"
-            },
-            {
-              "key": "Connection",
-              "value": "close"
-            },
-            {
-              "key": "X-Powered-By",
-              "value": "PHP/8.5.3"
-            },
-            {
-              "key": "Cache-Control",
-              "value": "no-cache, private"
-            },
-            {
-              "key": "Date",
-              "value": "Tue, 17 Mar 2026 09:24:06 GMT"
-            },
-            {
-              "key": "Content-Type",
-              "value": "application/json",
-              "description": "",
-              "type": "text"
-            },
-            {
-              "key": "Access-Control-Allow-Origin",
-              "value": "*"
-            }
-          ],
-          "cookie": [],
-          "body": "{\n    \"success\": false,\n    \"message\": \"There's too much water!\"\n}"
-        },
         {
           "name": "Successful Response",
           "originalRequest": {
@@ -440,6 +288,79 @@
           },
           "status": "OK",
           "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Host",
+              "value": "localhost"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "PHP/8.5.3"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, private"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 18 Mar 2026 03:37:24 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Added 10 ml of water. Water container now has 1040 ml.\",\n    \"data\": {\n        \"water\": {\n            \"current_ml\": 1040,\n            \"capacity_ml\": 2000,\n            \"percentage\": 52\n        },\n        \"coffee\": {\n            \"current_g\": 340,\n            \"capacity_g\": 500,\n            \"percentage\": 68\n        },\n        \"can_make\": {\n            \"espresso\": true,\n            \"double_espresso\": true,\n            \"ristretto\": true,\n            \"americano\": true\n        }\n    }\n}"
+        },
+        {
+          "name": "Validation Error",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"amount\": 10000\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/api/machine/fill-water",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "machine",
+                "fill-water"
+              ]
+            }
+          },
+          "status": "Unprocessable Content",
+          "code": 422,
           "_postman_previewlanguage": "json",
           "header": [
             {
@@ -460,7 +381,7 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 17 Mar 2026 09:47:51 GMT"
+              "value": "Wed, 18 Mar 2026 03:44:24 GMT"
             },
             {
               "key": "Content-Type",
@@ -474,7 +395,7 @@
             }
           ],
           "cookie": [],
-          "body": "{\n    \"message\": \"Added 10 ml of water. Water container now has 1862 ml.\",\n    \"data\": {\n        \"message\": \"Added 10 ml of water. Water container now has 1862 ml.\",\n        \"status\": {\n            \"water\": {\n                \"current_ml\": 1862,\n                \"capacity_ml\": 2000,\n                \"percentage\": 93.1\n            },\n            \"coffee\": {\n                \"current_g\": 481,\n                \"capacity_g\": 500,\n                \"percentage\": 96.2\n            },\n            \"can_make\": {\n                \"espresso\": true,\n                \"double_espresso\": true,\n                \"ristretto\": true,\n                \"americano\": true\n            }\n        }\n    }\n}"
+          "body": "{\n    \"message\": \"Water container will overflow if you add that much. Please enter a smaller amount (max 2000 ml).\",\n    \"errors\": {\n        \"amount\": [\n            \"Water container will overflow if you add that much. Please enter a smaller amount (max 2000 ml).\"\n        ]\n    }\n}"
         }
       ]
     },
@@ -514,7 +435,7 @@
             "fill-coffee"
           ]
         },
-        "description": "Fills the coffee container in the coffee machine by adding a specified amount of coffee.\n\n### Endpoint\n\n`POST {{url}}/api/machine/fill-coffee`\n\n- Base URL is read from the active environment variable `{{url}}` (Environment: **Local**).\n    \n\n### Headers\n\n``` http\nAccept: application/json\nContent-Type: application/json\n\n ```\n\n### Request body\n\nJSON payload with a single field:\n\n| Field | Type | Required | Description |\n| --- | --- | --- | --- |\n| `amount` | number | yes | Amount of coffee to add **in grams**. |\n\n#### Example request\n\n``` bash\ncurl --request POST \"{{url}}/api/machine/fill-coffee\" \\\n  --header \"Accept: application/json\" \\\n  --header \"Content-Type: application/json\" \\\n  --header \"Authorization: Bearer {{token}}\" \\\n  --data \"{\\\"amount\\\": 5}\"\n\n ```\n\n### Responses\n\n#### 200 OK — Successful Response\n\nReturns a confirmation message and the updated machine status (water/coffee levels and what drinks can be made).\n\nExample (shape):\n\n``` json\n{\n  \"message\": \"Added 5.0 g of coffee...\",\n  \"data\": {\n    \"message\": \"Added 5.0 g of coffee...\",\n    \"status\": {\n      \"water\": {\n        \"current_ml\": 2000,\n        \"capacity_ml\": 2000,\n        \"percentage\": 100\n      },\n      \"coffee\": {\n        \"current_g\": 497,\n        \"capacity_g\": 500,\n        \"percentage\": 99.4\n      },\n      \"can_make\": {\n        \"espresso\": true,\n        \"double_espresso\": true,\n        \"ristretto\": true,\n        \"americano\": true\n      }\n    }\n  }\n}\n\n ```\n\n#### Validation Error — Validation Error\n\nIf `amount` is missing, not a number, or outside allowed limits, the API responds with a validation error.\n\nSee saved examples for concrete payloads:\n\n- **Successful Response**\n    \n- **Validation Error**"
+        "description": "Fills the coffee container in the coffee machine by adding a specified amount of coffee.\n\n### Endpoint\n\n`POST {{url}}/api/machine/fill-coffee`\n\n- Base URL is read from the active environment variable `{{url}}` (Environment: **Local**).\n    \n\n### Headers\n\n``` http\nAccept: application/json\nContent-Type: application/json\n\n ```\n\n### Request body\n\nJSON payload with a single field:\n\n| Field | Type | Required | Description |\n| --- | --- | --- | --- |\n| `amount` | number | yes | Amount of coffee to add **in grams**. |\n\n#### Example request\n\n``` bash\ncurl --request POST \"{{url}}/api/machine/fill-coffee\" \\\n  --header \"Accept: application/json\" \\\n  --header \"Content-Type: application/json\" \\\n  --header \"Authorization: Bearer {{token}}\" \\\n  --data \"{\\\"amount\\\": 5}\"\n\n ```\n\n### Responses\n\n#### 200 OK — Successful Response\n\nReturns a confirmation message and the updated machine status (water/coffee levels and what drinks can be made).\n\nExample (shape):\n\n``` json\n{\n    \"message\": \"Added 5.0 g of coffee. Coffee container now has 331.0 g.\",\n    \"data\": {\n        \"water\": {\n            \"current_ml\": 902,\n            \"capacity_ml\": 2000,\n            \"percentage\": 45.1\n        },\n        \"coffee\": {\n            \"current_g\": 331,\n            \"capacity_g\": 500,\n            \"percentage\": 66.2\n        },\n        \"can_make\": {\n            \"espresso\": true,\n            \"double_espresso\": true,\n            \"ristretto\": true,\n            \"americano\": true\n        }\n    }\n}\n\n ```\n\n#### Validation Error — Validation Error\n\nIf `amount` is missing, not a number, or outside allowed limits, the API responds with a validation error.\n\nSee saved examples for concrete payloads:\n\n- **Successful Response**\n    \n- **Validation Error**"
       },
       "response": [
         {
@@ -610,7 +531,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"amount\": 20\r\n}",
+              "raw": "{\r\n    \"amount\": 20000\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -651,7 +572,7 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 17 Mar 2026 09:25:40 GMT"
+              "value": "Wed, 18 Mar 2026 03:45:08 GMT"
             },
             {
               "key": "Content-Type",
@@ -665,7 +586,7 @@
             }
           ],
           "cookie": [],
-          "body": "{\n    \"success\": false,\n    \"message\": \"Coffee container overflow!\"\n}"
+          "body": "{\n    \"message\": \"Coffee container will overflow if you add that much. Please enter a smaller amount (max 500 g).\",\n    \"errors\": {\n        \"amount\": [\n            \"Coffee container will overflow if you add that much. Please enter a smaller amount (max 500 g).\"\n        ]\n    }\n}"
         }
       ]
     }
